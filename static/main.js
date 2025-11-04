@@ -35,7 +35,6 @@ function renderInsights(ins) {
 }
 
 function buildDatasets(labels, series) {
-  // Chart.js will auto-assign colors; avoid specifying colors to keep it simple.
   const dates = series.map(s => s.date);
   return labels.map(label => ({
     label: label,

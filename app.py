@@ -39,7 +39,7 @@ def analyze_emotions(text: str):
     Calls Hugging Face Inference API for multi-class emotion analysis.
     Returns a tuple: (emotions_dict, top_label, top_score)
     """
-    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
+    url = f"https://router.huggingface.co/hf-inference/models/{HF_MODEL}"
     headers = {"Authorization": f"Bearer {HF_TOKEN}"}
     resp = requests.post(url, headers=headers, json={"inputs": text}, timeout=30)
     resp.raise_for_status()
