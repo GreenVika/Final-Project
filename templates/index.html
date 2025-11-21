@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mental Health Journal</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 0; }
+    header { background: #0b5; color: white; padding: 16px; }
+    main { padding: 16px; display: grid; gap: 20px; max-width: 960px; margin: 0 auto; }
+    .card { background: rgba(0,0,0,0.03); padding: 16px; border-radius: 14px; }
+    textarea { width: 100%; min-height: 120px; padding: 10px; border-radius: 10px; border: 1px solid #bbb; }
+    button { background: #0b5; color: #fff; border: 0; padding: 10px 16px; border-radius: 10px; cursor: pointer; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .row { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 920px) { .row { grid-template-columns: 1fr 1fr; } }
+    .flex { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .muted { color: #666; font-size: 0.9rem; }
+    .pill { padding: 4px 10px; background: #eaf8f0; border-radius: 999px; }
+    .entry { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .tiny { font-size: 0.85rem; color: #666; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mental Health Journal</h1>
+    <div class="muted">Log your feelings, get AI insights and see your mood trends.</div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Daily Journal</h2>
+      <p class="muted">Your entries are analyzed for emotions (happy/joy, sadness, stress/fear, neutral, etc.).</p>
+      <textarea id="entryText" placeholder="How are you feeling today? Write freely..."></textarea>
+      <div class="flex">
+        <button id="saveBtn">Save Entry</button>
+        <span id="saveStatus" class="muted"></span>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="card">
+        <h2>Mood Tracking (last <span id="rangeLabel">30</span> days)</h2>
+        <div class="flex">
+          <button class="pill" data-days="7">7d</button>
+          <button class="pill" data-days="30">30d</button>
+          <button class="pill" data-days="90">90d</button>
+        </div>
+        <canvas id="moodChart" height="260"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Personalized Insights</h2>
+        <div id="insights">
+          <p class="muted">No insights yet — log an entry to get started.</p>
+        </div>
+        <h3>Recent Entries</h3>
+        <div id="entriesList"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
